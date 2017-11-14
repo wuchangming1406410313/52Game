@@ -20,11 +20,17 @@
                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                          |佛祖保佑|       |永无BUG|
   */
+body{
+    /*background-color: #d1e3db;*/
+    background-image: url(../images/bg1.jpg);
+}
 header{
     width: 100%;
     height: 65px;
-    background-color: #3e3c3d;
+    background-color: rgba(63,63,60,0.8);
     position: relative;
+    border: 4px solid #111;
+    box-sizing: border-box;
 }
 header .box{
     display: inline-block;
@@ -40,7 +46,7 @@ header .box p{
     line-height: 45px;
     text-align: center;
     font-size: 25px;
-    margin-top: 8px;
+    margin-top: 4px;
     transition: all .8s;
 
 }
@@ -49,7 +55,7 @@ header .box p a{
 }
 header .box p:hover{
     transform: scale(1.2);
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.4);
     /*border-top: 2px solid  #008e59;*/
     border-bottom: 2px solid  #008e59;
 }
@@ -61,7 +67,7 @@ header ul{
     height: 45px;
     /*background-color: red;*/
     float: right;
-    margin-top: 10px;
+    margin-top: 6px;
     margin-right: 50px;
 }
 header ul li{
@@ -83,7 +89,7 @@ header ul li a{
 }
 header ul li:hover{
     transform: scale(1.3);
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.3);
     border-top: 2px solid  #008e59;
     border-bottom: 2px solid  #008e59;
 
@@ -91,14 +97,28 @@ header ul li:hover{
 header ul li:hover a{
     color: #008e59;
 }
+
+
+
+
+
 .content{
-    width: 90%;
-    height: 600px;
-    background-color: rgb(151,52,68);
-    margin: 0 auto;
+    width: 98%;
+    height: 1600px;
+    /*background-image: url(../images/bg1.jpg);*/
+    background-color: rgba(151,52,68,.8);
+    margin: 18px auto;
+    border: 4px solid #111;
+    box-sizing: border-box;
 }
+
+
+
+
 footer{
     width: 100%;
     height: 200px;
-    background-color: #3e3c3d;
+    background-color: rgba(63,63,60,0.8);
+    border: 4px solid #111;
+    box-sizing: border-box;
 }
