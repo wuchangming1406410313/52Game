@@ -20,14 +20,6 @@
                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                          |佛祖保佑|       |永无BUG|
   */
-@keyframes rotate {
-    from{
-        transform: rotateX(0deg);
-    }
-    to{
-        transform: rotateX(-360deg);
-    }
-}
 header{
     width: 100%;
     height: 65px;
@@ -35,62 +27,35 @@ header{
     position: relative;
 }
 header .box{
-    transform-style: preserve-3d;
     display: inline-block;
     width: 120px;
     height: 65px;
     /*background-color: blue;*/
-    position: relative;
-    top: -12px;
-    left: 100px;
-    animation: rotate 5s linear infinite normal;
+    margin-left: 40px;
 }
 header .box p{
-    width: 120px;
-    height: 65px;
-    display: inline-block;
-    line-height: 65px;
+    width: 100%;
+    height: 45px;
+    /*background-color: green;*/
+    line-height: 45px;
     text-align: center;
-    color: #e9db39;
-    font-size: 38px;
-    position: absolute;
-    background-color: rgba(62,60,61,.9);
-    border: 1px solid rgba(233,219,57,.4);
-    box-sizing: border-box;
-    transition: all .3s;
+    font-size: 25px;
+    margin-top: 8px;
+    transition: all .8s;
+
 }
 header .box p a{
     color: #e9db39;
-    transition: all .3s;
 }
-header .box p:nth-child(1){
-    /*background-color: #3e3c3d;*/
-    transform:  rotateX(90deg) translateZ(32px);
+header .box p:hover{
+    transform: scale(1.2);
+    background-color: rgba(0,0,0,0.1);
+    /*border-top: 2px solid  #008e59;*/
+    border-bottom: 2px solid  #008e59;
 }
-header .box p:nth-child(2){
-    /*background-color: #3e3c3d;*/
-    transform:  rotateX(180deg) translateZ(32px);
-}
-header .box p:nth-child(3){
-    /*background-color: #3e3c3d;*/
-    transform:  rotateX(270deg) translateZ(32px);
-}
-header .box p:nth-child(4){
-    /*background-color: #3e3c3d;*/
-    transform:  rotateX(360deg) translateZ(32px);
-}
-header .box:hover{
-    animation-play-state: paused;
-}
-header .box:hover p{
-    border: 1px solid rgba(0,142,89,.4);
-}
-header .box:hover p a{
+header .box p:hover a{
     color: #008e59;
 }
-
-
-
 header ul{
     width: 550px;
     height: 45px;
