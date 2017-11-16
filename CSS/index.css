@@ -117,7 +117,7 @@ header ul li:hover a{
     margin: 18px auto;
     border: 4px solid #111;
     box-sizing: border-box;
-    animation: fz 2s linear infinite;
+    /*animation: fz 2s linear infinite;*/
 }
 
 footer{
