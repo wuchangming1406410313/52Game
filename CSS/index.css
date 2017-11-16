@@ -27,7 +27,7 @@ body{
 header{
     width: 100%;
     height: 65px;
-    background-color: rgba(63,63,60,0.8);
+    background-color: rgba(63,63,60,0.6);
     position: relative;
     border: 4px solid #111;
     box-sizing: border-box;
@@ -113,17 +113,17 @@ header ul li:hover a{
     width: 98%;
     height: 600px;
     /*background-image: url(../images/bg1.jpg);*/
-    background-color: rgba(204,53,54,.8);
     margin: 18px auto;
     border: 4px solid #111;
     box-sizing: border-box;
+    background-color: rgba(63,63,60,0.6);
     /*animation: fz 2s linear infinite;*/
 }
 
 footer{
     width: 100%;
     height: 200px;
-    background-color: rgba(63,63,60,0.8);
+    background-color: rgba(63,63,60,0.6);
     border: 4px solid #111;
     box-sizing: border-box;
 }
