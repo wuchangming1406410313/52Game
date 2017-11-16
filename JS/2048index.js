@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 
 var _extends = Object.assign || function (target) {
         for (var i = 1; i < arguments.length; i++) {
@@ -23,7 +23,7 @@ var nextId = 1;
 var score = 0;
 
 function initGame() {
-    game = Array(size * size).fill(null); // 4 x 4 grid, represented as an array
+    game=Array(size * size).fill(null);
     initBestScore();
 }
 
