@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>贪食蛇</title>
+    <style>
+        body{
+            background-color: #ccc;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 300px;
+            height: 100px;
+            /*background-color: blue;*/
+            margin: 0 auto;
+        }
+        header span{
+            display: inline-block;
+            float: left;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 50px;
+        }
+        header span:nth-child(1){
+            background-color: #1B9AAA;
+        }
+        header span:nth-child(2){
+            background-color: #FFC43D;
+            margin:  0 30px;
+        }
+        header span:nth-child(3){
+            background-color: #06D6A0;
+        }
+        canvas{
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            margin-left: -150px;
+            background-color: #008e59;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <span>贪</span>
+    <span>吃</span>
+    <span>蛇</span>
+</header>
+<canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<script>
+    //r数组表示蛇 ； co表示蛇前进的方向，默认向下 ； e表示食物
+    var ctx = document.getElementById("myCanvas").getContext("2d"),
+            r = [{
+                x: 10,
+                y: 9
+            }, {
+                x: 10,
+                y: 8
+            }],
+            co = 40,
+            e = null;
+    var offOn = true;
+    var offOn01 = true;
+    var num = 3;
+    var count = 0;
+    var color = ["#000", "#ff7600"];
+    //循环，间隔为200毫秒
+    var timer = setInterval(doMove, 200);
+
+
+    function doMove() {
+        //给蛇加上阴影效果
+//        ctx.shadowBlur = 20, ctx.shadowColor = color[count];
+        //游戏是否已经结束
+        if (check(r[0], 0) || r[0].x < 0 || r[0].x >= 30 || r[0].y < 0 || r[0].y >= 30) return;
+        //如果有食物，则根据蛇前进的方向判断是否吃到了食物，并且将蛇数组中最后一个元素换到首部
+        /*r.unshift(e), e = null, r.unshift(r.pop())如果想连贯运动，就需要把后面的添加到前面去，不是会有一种停顿的感觉*/
+        e != null && ((co == 40 && r[0].x == e.x && r[0].y + 1 == e.y) ||
+        (co == 38 && r[0].x == e.x && r[0].y - 1 == e.y) || (co == 37 && r[0].x - 1 == e.x && r[0].y == e.y) ||
+        (co == 39 && r[0].x + 1 == e.x && r[0].y == e.y)) ? (r.unshift(e), e = null, r.unshift(r.pop())) : (r.unshift(r.pop()));
+        //根据方向，重新设定蛇数组首元素的坐标，从而进行移动
+        (co == 40 || co == 38) ? (r[0].x = r[1].x, r[0].y = r[1].y + (co == 40 ? 1 : -1)) : (r[0].x = r[1].x + (co == 39 ? 1 : -1), r[0].y = r[1].y);
+        //清空屏幕
+        ctx.clearRect(0, 0, 300, 300);
+        //如果有食物，则绘制食物
+        ctx.fillStyle = color[0];
+        ctx.shadowColor = color[0];
+        if (e) ctx.fillRect(e.x * 10, e.y * 10, 10, 10);
+        //绘制蛇
+        ctx.fillStyle = color[count];
+        ctx.shadowColor = color[count];
+        for (var i = 0; i < r.length; i++) ctx.fillRect(r[i].x * 10, r[i].y * 10, 10, 10);
+        //如果没有食物，则在随机位置上加入一粒食物
+        while (e == null || check(e)) e = {
+            y: (Math.random() * 30 >>> 0),
+            x: (Math.random() * 30 >>> 0)
+        };
+        /*分数*/
+        ctx.fillStyle = color[0];
+        ctx.shadowBlur = 0;
+        ctx.textBaseline = "top";
+        ctx.textAlign = "left";
+        ctx.font = "12px Arial";
+        ctx.fillText("分数:" + (r.length - 2), 10, 10);
+        //判断游戏是否结束
+        if (check(r[0], 0) || r[0].x < 0 || r[0].x >= 30 || r[0].y < 0 || r[0].y >= 30)
+            alert("game over\n你获得：" + (r.length - 2) + "分");
+
+        /*关数*/
+        if ((r.length - 2) == 10) {
+            if (offOn01) {
+                clearInterval(timer);
+                offOn01 = false;
+                var timer0 = setInterval(function () {
+                    if (num <= 0) {
+                        clearInterval(timer0);
+                    }
+                    ctx.clearRect(0, 0, 300, 300);
+                    ctx.font = "20px Arial";
+                    ctx.textBaseline = "middle";
+                    ctx.textAlign = "center";
+                    ctx.fillText("下一关:" + num, 150, 150);
+                    num = --num < 0 ? 0 : num;
+                }, 1000);
+                setTimeout(function () {
+                    count = 1;
+                    timer = setInterval(doMove, 100);
+                }, 4000);
+            }
+        }
+        offOn = true;
+    }
+    //加入键盘事件，用方向键来控制蛇前进的方向
+    /*(Math.abs(event.keyCode - co) != 2判断不能向后走
+     left:37,top:38,right:39,bottom:40
+     反方向刚刚好是相差2
+     */
+
+    /*使用onkeydown就是加入快速按下别的键，然后按下相反的键就可以实现到反方向走*/
+    document.onkeydown = function (event) {
+        if (offOn) {
+            offOn = false;
+            co = event.keyCode >= 37 && event.keyCode <= 40 && (Math.abs(event.keyCode - co) != 2) ? event.keyCode : co;
+        }
+    }
+    //判断指定位置是否与蛇重叠
+    /*撞到尾部不会结束游戏*/
+    function check(e, j) {
+        for (var i = 0; i < r.length; i++)
+            if (j != i && r[i].x == e.x && r[i].y == e.y) return true;
+        return false;
+    }</script>
+
+</body>
+
+</html>
