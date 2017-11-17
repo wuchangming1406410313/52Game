@@ -35,7 +35,8 @@
 
 body{
     /*background-color: #d1e3db;*/
-    background-image: url(../images/bg1.jpg);
+    background: url(../images/bg1.jpg) 0 0 no-repeat;
+    /*background-repeat: no-repeat;*/
 }
 header{
     width: 100%;
