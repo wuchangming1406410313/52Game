@@ -35,7 +35,7 @@
 
 body{
     /*background-color: #d1e3db;*/
-    background: url(../images/bg1.jpg) 0 0 no-repeat;
+    background: url(../images/bg1.jpg);
     /*background-repeat: no-repeat;*/
 }
 header{
